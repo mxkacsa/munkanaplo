@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=320; user-scalable=no" />
+	<script src="jquery.js"></script>
+	<script src="jquerym.js"></script>
+	<link rel="stylesheet" href="jquerym.css">
+	<link rel="stylesheet" href="pickadate.01.default.css">
+	<title>gyakorlat</title>
+	<style type="text/css">
+		.d_datum{
+			background: white;
+			padding: 10px;
+			font-style: bold;
+		}
+		.d_tartalom{
+			padding:15px;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+		<form name='form' method='get' action='http://burczalex.comlu.com/mnaplo.php'>
+			<div data-role="header">
+				<input id="input_01" class="datepicker" type="text" name="datum">
+			</div>
+			<div data-role="content">
+				<textarea name="tartalom" id="tartalom" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset"></textarea>
+				<input type="text" name="az" value="1">
+				<input type="submit" name='submit' value='Küldés'>
+				<a href="index.html" rel="external" class="ui-btn ui-icon-refresh ui-btn-icon-left ui-shadow ui-corner-all">Frissít</a>
+				<div id="elozmeny"></div>
+			</div>
+
+			<!--iframe src="http://burczalex.comlu.com/mnaplog.php"></iframe-->
+		</form>
+		<script src="rainbow.js"></script>
+		<script src="pickadate.legacy.js"></script>
+		<script type="text/javascript">
+	        $( '[type=date], .datepicker' ).pickadate()
+	        $(document).ready(function(){
+	        	$("#elozmeny").load("http://burczalex.comlu.com/mnaplo.php?az=1");
+	        });
+	        
+	        $("#elozmeny").on('tap', '.d_datum', function(event){
+	        	//$(".d_tartalom").css({ "display":"none"});
+	        	$("#"+this.id+"_t").toggle();
+	        });
+	        $("form").submit( function(){
+	        	if ($("#tartalom").val().length > 1 && $("#input_01").val().length > 1)
+	        	{
+	        		return true;
+	        	}
+	        	else
+	        	{
+	        		return false;
+	        	}
+	        });
+	    </script>
+</body>
+</html>
